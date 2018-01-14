@@ -44,6 +44,7 @@ jobs:
   test:
     <<: *defaults
     steps:
+      - checkout
       - attach_workspace:
           at: ~/repo
       - run: mkdir ~/junit
