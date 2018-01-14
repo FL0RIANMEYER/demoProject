@@ -39,7 +39,8 @@ jobs:
           # Must be relative path from root
           paths:
             - ./**/*
-  test:
+
+  unit-test:
     <<: *defaults
     steps:
       - checkout
@@ -47,7 +48,42 @@ jobs:
           at: ~/repo
       - run: mkdir ./junit
       - run:
-          command: yarn test
+          command: yarn run unit-test
+          environment:
+            MOCHA_FILE: ./junit/mocha/test-results.xml
+          when: always
+      - store_test_results:
+          path: ./junit
+      - store_artifacts:
+          path: ./junit
+
+  integration-test:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - run: mkdir ./junit
+      - run:
+          command: yarn run integration-test
+          environment:
+            MOCHA_FILE: ./junit/mocha/test-results.xml
+          when: always
+      - store_test_results:
+          path: ./junit
+      - store_artifacts:
+          path: ./junit
+
+
+  acceptance-test:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - run: mkdir ./junit
+      - run:
+          command: yarn run acceptance-test
           environment:
             MOCHA_FILE: ./junit/mocha/test-results.xml
           when: always
@@ -61,6 +97,17 @@ workflows:
   commit:
     jobs:
       - build
-      - test:
+      - unit-test:
           requires:
             - build
+      - integration-test:
+          requires:
+            - build
+      - acceptance-test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - unit-test
+            - integration-test
+            - acceptance-test
