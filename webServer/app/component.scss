@@ -1,0 +1,38 @@
+.component {
+    margin-top: 20px;
+}
+
+.button {
+    background-color: white;
+    border: thin solid rgb(180, 180, 180);
+    border-radius: 0 3px 3px 0;
+    padding: 5px
+}
+.input {
+    border: thin solid rgb(180, 180, 180);
+    border-radius: 3px 0 0 3px;
+    padding: 5px
+}
+.component form {
+    margin-bottom: 10px;
+}
+.entry {
+    border: 1px solid lightgrey;
+    border-bottom: none;
+    padding: 5px;
+}
+
+.entry:first-child {
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.entry:last-child {
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.entry:hover {
+    background-color: rgba(2, 2, 2, 0.05);
+}

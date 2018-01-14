@@ -1,0 +1,38 @@
+.component__component___1_rev {
+  margin-top: 20px; }
+
+.component__button___HPD8G {
+  background-color: white;
+  border: thin solid #b4b4b4;
+  border-radius: 0 3px 3px 0;
+  padding: 5px; }
+
+.component__input___2VK37 {
+  border: thin solid #b4b4b4;
+  border-radius: 3px 0 0 3px;
+  padding: 5px; }
+
+.component__component___1_rev form {
+  margin-bottom: 10px; }
+
+.component__entry___1SpZh {
+  border: 1px solid lightgrey;
+  border-bottom: none;
+  padding: 5px; }
+
+.component__entry___1SpZh:first-child {
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px; }
+
+.component__entry___1SpZh:last-child {
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom: 1px solid lightgrey; }
+
+.component__entry___1SpZh:hover {
+  background-color: rgba(2, 2, 2, 0.05); }
+.app__app___1o5uL {
+  display: flex;
+  justify-content: center; }
+
+/*# sourceMappingURL=main.css.map*/
