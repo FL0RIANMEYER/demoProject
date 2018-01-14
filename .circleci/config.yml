@@ -33,8 +33,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
-      - run: yarn test
       - persist_to_workspace:
           # Must be an absolute path, or relative path from working_directory
           root: ~/repo
