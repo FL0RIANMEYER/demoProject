@@ -47,16 +47,16 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/repo
-      - run: mkdir ~/junit
+      - run: mkdir ./junit
       - run:
           command: yarn test
           environment:
-            MOCHA_FILE: ~/junit/test-results.xml
+            MOCHA_FILE: ./junit/test-results.xml
           when: always
       - store_test_results:
-          path: ~/junit
+          path: ./junit
       - store_artifacts:
-          path: ~/junit
+          path: ./junit
 
 workflows:
   version: 2
