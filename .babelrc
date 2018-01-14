@@ -1,0 +1,11 @@
+{
+  "presets": ["es2015", "es2017", "react", "stage-0", "stage-2", "stage-3"],
+  "retainLines": true,
+  "sourceMaps": "inline",
+  "plugins": ["istanbul", "syntax-async-functions", "transform-regenerator", "transform-object-rest-spread"],
+  "env": {
+    "test": {
+      "plugins": [ "istanbul" ]
+    }
+  }
+}
