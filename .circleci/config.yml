@@ -51,7 +51,7 @@ jobs:
       - run:
           command: yarn test
           environment:
-            MOCHA_FILE: ./junit/test-results.xml
+            MOCHA_FILE: ./junit/mocha/test-results.xml
           when: always
       - store_test_results:
           path: ./junit
