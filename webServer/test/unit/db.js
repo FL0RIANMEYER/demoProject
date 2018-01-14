@@ -81,6 +81,7 @@ describe('openExchange', () => {
             // setValueHandler.should.be.calledOnce;
             // requestsHandler.should.be.calledOnce;
             // response.should.be.deep.equal(responseData);
+            throw new Error('Test Error');
         });
 
         it('returns Error with undefined date parameter', async () => {
