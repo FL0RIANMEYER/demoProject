@@ -3,7 +3,7 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
-defaults:
+defaults: &defaults
   working_directory: ~/repo
   docker:
     # specify the version you desire here
@@ -15,6 +15,7 @@ defaults:
     # - image: circleci/mongo:3.4.4
 jobs:
   build:
+    <<: *defaults
     steps:
       - checkout
 
@@ -36,6 +37,7 @@ jobs:
       - run: yarn test
 
   test:
+    <<: *defaults
     steps:
       - run: mkdir ~/junit
       - run:
