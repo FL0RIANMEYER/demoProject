@@ -35,3 +35,14 @@ jobs:
 
       # run tests!
       - run: yarn test
+
+  test:
+    steps:
+      - run: yarn test
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build
+      - test
