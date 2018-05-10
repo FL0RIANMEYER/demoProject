@@ -9,7 +9,7 @@
     "integration-test": "mocha webServer/test/integration/**/*.js --compilers js:babel-core/register --require babel-polyfill --reporter mocha-junit-reporter",
     "acceptance-test":  "mocha webServer/test/acceptance/**/*.js  --compilers js:babel-core/register --require babel-polyfill --reporter mocha-junit-reporter"
   },
-  "author": "FA",
+  "author": "FAS",
   "license": "ISC",
   "devDependencies": {
     "babel": "^6.23.0",
