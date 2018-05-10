@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                echo 'Hello World ...WebServer'
+                echo 'Hello World ...EndToEnd'
             }
         }
     }
