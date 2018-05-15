@@ -1,4 +1,5 @@
 pipeline {
+    println(new Date().getTime())
     agent any
     stages {
         stage('Test') {
