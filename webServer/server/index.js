@@ -1,5 +1,5 @@
 import { port } from '../config/config';
 import Server   from './server';
 
-console.log('AAAAAasssssssssssssssasdasdasdasdsssasasasdasddasd');
+console.log('was geht');
 new Server(port);
