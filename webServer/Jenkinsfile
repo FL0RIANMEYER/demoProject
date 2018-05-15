@@ -1,5 +1,7 @@
 pipeline {
     agent any
+    echo "TimeStamp: ${currentBuild.startTimeInMillis}"
+
     stages {
         stage('Test') {
             steps {
@@ -7,4 +9,5 @@ pipeline {
             }
         }
     }
+    echo "TimeStamp: ${Util.getTimeSpanString(System.currentTimeMillis()}"
 }
