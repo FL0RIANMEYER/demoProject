@@ -4,7 +4,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Hello World ...WebServer'
-                println(Date.getTime())
+                println(new Date().getTime())
             }
         }
     }
