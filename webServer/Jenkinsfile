@@ -1,9 +1,9 @@
 pipeline {
-    println(new Date().getTime())
     agent any
     stages {
         stage('Test') {
             steps {
+                println(new Date().getTime())
                 echo 'Hello World ...WebServer '
                 println(new Date().getTime())
             }
