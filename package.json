@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "a": "echo \"Nothing done\" && exit 0",
     "test": "npm run unit-test && npm run integration-test && npm run acceptance-test",
     "unit-test": "mocha webServer/test/unit/**/*.js        --compilers js:babel-core/register --require babel-polyfill --reporter mocha-junit-reporter",
     "integration-test": "mocha webServer/test/integration/**/*.js --compilers js:babel-core/register --require babel-polyfill --reporter mocha-junit-reporter",
     "acceptance-test": "mocha webServer/test/acceptance/**/*.js  --compilers js:babel-core/register --require babel-polyfill --reporter mocha-junit-reporter"
   },
-  "pre-commit": [ "test" ],
+  "pre-commit": [
+    "a"
+  ],
   "author": "FASA",
   "license": "ISC",
   "devDependencies": {
