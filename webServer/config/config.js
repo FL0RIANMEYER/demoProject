@@ -1,10 +1,28 @@
-import path from 'path';
-import { compiled } from './path';
+import { public as publicPath } from './path';
+
+import dotenv  from 'dotenv';
+import convict from 'convict';
+
+dotenv.config();
+const config = convict({
+    env: {
+        format: ['dev', 'devtest', 'test', 'prod'],
+        default: 'prod',
+        arg: 'nodeEnv',
+        env: 'NODE_ENV',
+    },
+    port: {
+        format: String,
+        default: 3000,
+        arg: 'port',
+        env: 'PORT',
+    },
+});
+
+config.validate({ allowed: 'strict' });
+
+const { port } = config.getProperties();
 
 
-const port = 3000;
-const staticPath = path.join(compiled, 'client');
-
-
-export         { port, staticPath }
-export default { port, staticPath };
+export         { port, publicPath };
+export default { port, publicPath };
