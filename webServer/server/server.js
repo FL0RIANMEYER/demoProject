@@ -2,7 +2,7 @@ import express    from 'express';
 import bodyParser from 'body-parser';
 
 import routes         from './routes';
-import { staticPath } from '../config/config';
+import { staticPath } from '../config';
 
 const Server = function(port) {
     const app = express();
