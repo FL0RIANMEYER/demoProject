@@ -5,6 +5,7 @@ pipeline {
             steps {
                 println(new Date().getTime())
                 dir('webServer') {
+                    sh "npm config get"
                     sh "npm install"
                     sh "npm run build:devTest"
                 }
