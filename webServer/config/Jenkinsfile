@@ -4,12 +4,14 @@ pipeline {
         stage('prepare') {
             steps {
                 println(new Date().getTime())
-                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: """{"serviceName": "testTT"}""", url: "http://localhost:8022/"
+                def startTs = new Date().getTime();
                 dir('webServer') {
                     sh "npm set registry http://localhost:4872/"
                     sh "npm install"
                 }
-                println(new Date().getTime())
+                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: """{
+                    "serviceName": new Date().getTime()-startTs
+                }""", url: "http://localhost:8022/"
             }
         }
         stage('build') {
