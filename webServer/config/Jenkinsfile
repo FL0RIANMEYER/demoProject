@@ -4,7 +4,6 @@ pipeline {
         stage('build') {
             steps {
                 println(new Date().getTime())
-                sh "pwd"
                 dir('webServer') {
                     sh "npm install"
                     sh "npm run build:devTest"
