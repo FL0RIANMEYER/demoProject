@@ -3,10 +3,11 @@ pipeline {
     options {
         skipDefaultCheckout()
     }
-    def upstream = currentBuild.rawBuild.getCause(hudson.model.Cause$UpstreamCause)
+
     stages {
         stage('Test') {
             steps {
+                def upstream = currentBuild.rawBuild.getCause(hudson.model.Cause$UpstreamCause)
                 sh 'env > env.txt'
                 sh 'previousBuild > asd.txt'
                 sh 'ls webServer'
