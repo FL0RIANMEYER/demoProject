@@ -5,7 +5,7 @@ pipeline {
             steps {
                 println(new Date().getTime())
                 dir('webServer') {
-                    sh "npm config get"
+                    sh "npm set registry http://localhost:4872/"
                     sh "npm install"
                     sh "npm run build:devTest"
                 }
