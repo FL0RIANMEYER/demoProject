@@ -4,6 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 println(new Date().getTime())
+                sh "pwd"
                 sh "node --version"
                 sh "npm run build:devTest"
                 println(new Date().getTime())
