@@ -7,7 +7,6 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'currentBuild.rawBuild.getCause()'
                 sh 'env > env.txt'
                 sh 'previousBuild > asd.txt'
                 sh 'ls webServer'
