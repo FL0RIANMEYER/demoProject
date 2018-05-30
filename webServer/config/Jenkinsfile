@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        CURRENT_WORKSPACE=WORKSPACE
+    }
     stages {
         stage('prepare') {
             steps {
