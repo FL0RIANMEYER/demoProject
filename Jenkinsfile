@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                def upstream = currentBuild.rawBuild.getCause(hudson.model.Cause$UpstreamCause)
+                echo 'currentBuild.rawBuild.getCause(hudson.model.Cause$UpstreamCause).properties'
                 sh 'env > env.txt'
                 sh 'previousBuild > asd.txt'
                 sh 'ls webServer'
