@@ -1,34 +1,38 @@
-import { MongoClient, ObjectID } from 'mongodb';
+import http from 'http';
 
-const DB = function() {
-    const url = 'mongodb://localhost:27017';
-    const dbName = 'test';
-
-    this.insert = todo => {
-        return query((collection, resolve, reject) =>
-            collection.insert({ todo }, {w:1}, err =>
-                err ? reject(err) : resolve()));
-    };
-
-    this.delete = _id =>
-        query((collection, resolve, reject) =>
-            collection.deleteOne({ _id: ObjectID(_id) }, err =>
-                err ? reject(err) : resolve()));
-
-    this.getAll = () =>
-        query((collection, resolve, reject) =>
-            collection.find({}).toArray((err, items) =>
-                err ? reject() : resolve(items)));
-
-    function query(query) {
-        return new Promise((resolve, reject) =>
-            MongoClient.connect(url, (err, client) =>
-                query(
-                    client.db(dbName).collection('createIndexExample1'),
-                    (...args) => resolve(...args) || client.close(),
-                    (...args) => reject( ...args) || client.close()
-                )));
-    }
+export default {
+    getAll: async(body) => await request({ method: 'GET',    path: '/todo', body }),
+    add:    async(body) => await request({ method: 'POST',   path: '/todo', body }),
+    update: async(body) => await request({ method: 'PATCH',  path: `/todo/${body.id}`, body }),
+    delete: async(body) => await request({ method: 'DELETE', path: `/todo/${body.id}`, body }),
 };
 
-export default DB;
+const request = (data) => new Promise((resolve, rej) => {
+    const payload = JSON.stringify(data.body) || '{}';
+    const options = {
+        hostname: 'localhost',
+        port:     3001,
+        path:     data.path,
+        method:   data.method || 'GET',
+        headers: {
+           'Content-Type': 'application/json',
+           'Content-Length': Buffer.byteLength(payload),
+       },
+    };
+    const req = http.request(options, (res) => {
+        let data = '';
+        res.on('data', (chunk) => { data += chunk; });
+        res.on('end', () => {
+            try {
+                resolve(JSON.parse(data));
+            } catch (e) {
+                resolve(data);
+            }
+        });
+    });
+    req.on('error', (e) => {
+        rej(e);
+    });
+    req.write(payload);
+    req.end();
+});

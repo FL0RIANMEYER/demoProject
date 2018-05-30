@@ -11,7 +11,7 @@ const Server = function(port) {
     app.use(bodyParser.json());
     app.use(routes);
     app.use(express.static(staticPath));
-
+    console.log(staticPath);
     app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 };
 
