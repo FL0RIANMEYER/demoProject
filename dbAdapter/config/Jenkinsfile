@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('build') {
+            steps {
+                println(new Date().getTime())
+                openshiftBuild(bldCfg: 'webserver', showBuildLogs: 'true')
+                println(new Date().getTime())
+            }
+        }
+
+        stage('deploy') {
+            steps {
+                println(new Date().getTime())
+                openshiftDeploy(depCfg: '${NAME}')
+                println(new Date().getTime())
+            }
+        }
+    }
+}

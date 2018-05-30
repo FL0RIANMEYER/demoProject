@@ -1,0 +1,15 @@
+{
+    "apiVersion": "v1",
+    "kind": "ConfigMap",
+    "metadata": {
+        "name": "dev-configMap",
+        "context": "dev",
+        "labels": {
+            "name": "dev"
+        },
+        "namespace": "dev"
+    },
+    "data": {
+        "SERVER_PORT": 3000
+    }
+}

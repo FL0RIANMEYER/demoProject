@@ -1,0 +1,174 @@
+---
+apiVersion: v1
+kind: Template
+labels:
+  template: "${NAME}"
+parameters:
+- name: NAME
+  description: The name assigned to all of the frontend objects defined in this template.
+  displayName: Name
+  required: true
+- name: NAMESPACE
+  description: The OpenShift Namespace where the ImageStream resides.
+  displayName: Namespace
+  required: true
+  value: test-project
+- name: CONTEXT_DIR
+  description: Set this to the relative path to your project if it is not in the root
+    of your repository
+  displayName: Context Directory
+  value: ''
+- name: APPLICATION_DOMAIN
+  description: The exposed hostname that will route to the Node.js service, if left
+    blank a value will be defaulted
+  displayName: Application Hostname
+  value: ''
+- name: PROBE
+  description: The path of the readiness probe and liveness probe
+  displayName: Path Probe
+  required: true
+  value: ''
+- name: APP_VOLUME
+  description: The local path where the application is stored
+  displayName: App volume
+  required: true
+  value: ''
+- name: SERVER_PORT
+  description: The port the server will run on inside the container
+  displayName: Server Port
+  value: '8080'
+- name: LOG_LEVEL
+  description: Log level applied to the process
+  displayName: Log Level
+  value: debug
+objects:
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    name: "${NAME}-jenkins"
+    annotations:
+      description: Trigger a Jenkins build
+  spec:
+    source:
+      type: "Binary"
+    strategy:
+      type: JenkinsPipeline
+      jenkinsPipelineStrategy:
+        jenkinsfile: |-
+            pipeline {
+                agent any
+
+                stages {
+                    stage('build') {
+                        steps {
+                            println('asd2' + new Date().getTime())
+                            openshiftBuild(bldCfg: '${NAME}', showBuildLogs: 'true')
+                            println(new Date().getTime())
+                        }
+                    }
+
+                    stage('deploy') {
+                        steps {
+                            println(new Date().getTime())
+                            openshiftDeploy(depCfg: '${NAME}')
+                            println(new Date().getTime())
+                        }
+                    }
+                }
+            }
+
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    name: "${NAME}"
+    annotations:
+      description: Defines how to build the application
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "${NAME}:latest"
+    source:
+      type: "Binary"
+    strategy:
+      type: Docker
+      dockerStrategy:
+        dockerfilePath: "${CONTEXT_DIR}"
+    triggers:
+    - type: ConfigChange
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    name: "${NAME}"
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      description: Exposes and load balances the application pods
+    name: "${NAME}"
+  spec:
+    ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+    selector:
+      name: "${NAME}"
+- apiVersion: v1
+  kind: Route
+  metadata:
+    name: "${NAME}"
+  spec:
+    host: "${APPLICATION_DOMAIN}"
+    to:
+      kind: Service
+      name: "${NAME}"
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    name: "${NAME}"
+  selector:
+    name: "${NAME}"
+  spec:
+    selector:
+      name: "${NAME}"
+    ImagePullPolicy: Always
+    replicas: 1
+    strategy:
+      type: Recreate
+    template:
+      metadata:
+        labels:
+          name: "${NAME}"
+        name: "${NAME}"
+      spec:
+        containers:
+        - name: ${NAME}
+          env:
+          - name: SERVER_PORT
+            value: "${SERVER_PORT}"
+          - name: LOG_LEVEL
+            value: "${LOG_LEVEL}"
+          image: "${NAME}:latest"
+          ports:
+          - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: "${PROBE}"
+              port: 8080
+            initialDelaySeconds: 3
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: "${PROBE}"
+              port: 8080
+            initialDelaySeconds: 30
+            timeoutSeconds: 3
+  triggers:
+  - type: ImageChange
+    imageChangeParams:
+      automatic: true
+      containerNames:
+      - ${NAME}
+      from:
+        kind: ImageStreamTag
+        name: "${NAME}:latest"

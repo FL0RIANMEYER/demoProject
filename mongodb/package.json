@@ -1,0 +1,9 @@
+{
+  "name": "mongodb",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "mongod --dbpath ./database"
+  },
+  "license": "ISC"
+}
