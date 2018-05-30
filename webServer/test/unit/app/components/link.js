@@ -22,7 +22,7 @@ const setup = (propOverrides) => {
     renderer.render(<Link {...props}/>);
     const output = renderer.getRenderOutput();
 
-    console.log('absasssssssasdss');
+    console.log('absasssssssasdssA');
 
     return {props: props, output: output};
 };
