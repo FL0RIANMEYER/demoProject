@@ -1,12 +1,12 @@
 pipeline {
     agent any
-
+    environment {
+        CURRENT_WORKSPACE = "${env.WORKSPACE}" 
+    }
     stages {
         stage('prepare') {
             steps {
-                environment {
-                    CURRENT_WORKSPACE=env.WORKSPACE
-                }
+
                 println(new Date().getTime())
                 httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody:  """{"serviceName":"test:test.prepare","start":${new Date().getTime()}}""", url: "http://localhost:8022/"
                 dir('webServer') {
