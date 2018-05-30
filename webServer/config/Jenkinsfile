@@ -6,9 +6,7 @@ pipeline {
                 println(new Date().getTime())
                 sh "pwd"
                 dir('webServer') {
-                    sh "pwd"
-                    sh "node --version"
-                    sh "npm run"
+                    sh "npm install"
                     sh "npm run build:devTest"
                 }
                 println(new Date().getTime())
