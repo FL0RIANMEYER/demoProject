@@ -7,10 +7,12 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'env > env.txt'
-                sh 'previousBuild > asd.txt'
-                sh 'ls webServer'
-                echo 'Hello World ...EndToEnd'
+                ws("${JENKINS_HOME}/workspace/WebServer") {
+                    sh 'env > env.txt'
+                    sh 'previousBuild > asd.txt'
+                    sh 'ls webServer'
+                    echo 'Hello World ...EndToEnd'
+                }
             }
         }
     }
