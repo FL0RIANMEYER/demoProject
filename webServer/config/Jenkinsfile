@@ -7,7 +7,7 @@ pipeline {
                 dir('webServer') {
                     sh "npm set registry http://localhost:4872/"
                     sh "npm install"
-                    sh "npm run build:devTest"
+                    sh "npm run build:test"
                 }
                 println(new Date().getTime())
             }
