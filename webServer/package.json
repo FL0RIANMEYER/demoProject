@@ -19,6 +19,8 @@
         "build:test":                             "webpack --env devTest --config ./config/webpack/webpack.config.babel.js",
         "build:prod":                             "webpack --env prod    --config ./config/webpack/webpack.config.babel.js",
         "test:devTest": "mocha -w compiled/devTest/test/unit/**/*.js -r mock-css-modules -R mocha-rtp-reporter",
+        "test:test": "npm run test:unit",
+        "test:unit": "mocha compiled/devTest/test/unit/**/*.js -r mock-css-modules -R mocha-rtp-reporter",
         "test:serviceTest": "",
         "test:systemTest": "",
         "watch": "run-p --continue-on-error watch:files watch:config",
