@@ -5,9 +5,11 @@ pipeline {
             steps {
                 println(new Date().getTime())
                 sh "pwd"
+                sh "cd webServer"
+                sh "pwd"
                 sh "node --version"
                 sh "npm run"
-                sh "npm run build:devTest" 
+                sh "npm run build:devTest"
                 println(new Date().getTime())
             }
         }
