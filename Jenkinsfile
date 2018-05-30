@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                println(env)
+                sh 'env > env.txt' 
                 sh 'ls webServer'
                 echo 'Hello World ...EndToEnd'
             }
