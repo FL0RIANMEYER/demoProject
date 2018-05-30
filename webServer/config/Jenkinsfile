@@ -16,7 +16,9 @@ pipeline {
         stage('deploy') {
             steps {
                 println(new Date().getTime())
-                sh "npm run test:devTest"
+                dir('webServer') {
+                    sh "npm run test:devTest"
+                }
                 println(new Date().getTime())
             }
         }
