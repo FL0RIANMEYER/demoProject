@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        node {
-            customWorkspace '/some/other/path'
-        }
-    }
+    agent any
     options {
         skipDefaultCheckout()
     }
