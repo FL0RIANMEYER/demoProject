@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    dir "webserver"
     stages {
         stage('build') {
             steps {
