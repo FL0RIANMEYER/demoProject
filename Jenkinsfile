@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+                sh 'ls'
                 echo 'Hello World ...EndToEnd'
             }
         }
