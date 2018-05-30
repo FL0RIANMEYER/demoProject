@@ -17,7 +17,7 @@ pipeline {
             steps {
                 println(new Date().getTime())
                 dir('webServer') {
-                    sh "npm run test:devTest"
+                    sh "npm run test:test"
                 }
                 println(new Date().getTime())
             }
