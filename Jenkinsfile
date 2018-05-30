@@ -1,5 +1,13 @@
 pipeline {
-    agent any
+    agent {
+        node {
+            label 'my-defined-label'
+            customWorkspace '/some/other/path'
+        }
+    }
+    options {
+        skipDefaultCheckout()
+    }
     stages {
         stage('Test') {
             steps {
