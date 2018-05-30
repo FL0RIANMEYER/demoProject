@@ -16,8 +16,8 @@
     "scripts": {
         "build:dev":     "nodemon -w ./config -x \"webpack -w --env dev     --config ./config/webpack/webpack.config.babel.js\"",
         "build:devTest": "nodemon -w ./config -x \"webpack -w --env devTest --config ./config/webpack/webpack.config.babel.js\"",
-        "build:test":                             "webpack -w --env devTest --config ./config/webpack/webpack.config.babel.js",
-        "build:prod":                             "webpack -w --env prod    --config ./config/webpack/webpack.config.babel.js",
+        "build:test":                             "webpack --env devTest --config ./config/webpack/webpack.config.babel.js",
+        "build:prod":                             "webpack --env prod    --config ./config/webpack/webpack.config.babel.js",
         "test:devTest": "mocha -w compiled/devTest/test/unit/**/*.js -r mock-css-modules -R mocha-rtp-reporter",
         "test:serviceTest": "",
         "test:systemTest": "",
