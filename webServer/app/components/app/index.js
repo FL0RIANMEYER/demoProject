@@ -10,7 +10,7 @@ const MainSection = mainSectionContainer(mainSectionComponent);
 
 import styles from './index.css';
 
-console.log('A');
+console.log('As');
 const App = () => (
     <section className={styles.todoapp}>
         <Header />
