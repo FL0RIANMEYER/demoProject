@@ -25,9 +25,7 @@
         "test:devTest": "mocha -w -r babel-polyfill -r babel-core/register -r mock-css-modules test/e2e/**/*.js webserver/test/unit/**/*.js",
         "test:devTest:system": "cd test && mocha -w e2e/**/*.js -r babel-polyfill -r babel-core/register"
     },
-    "pre-commit": [
-        "a"
-    ],
+    "pre-commit": [],
     "author": "FASA",
     "license": "ISC",
     "devDependencies": {
