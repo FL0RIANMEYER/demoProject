@@ -52,7 +52,7 @@ describe('components', () => {
         expect(toggle.type).to.be.equal('input');
         expect(toggle.props.className).to.be.equal('toggleAll');
         expect(toggle.props.type).to.be.equal('checkbox');
-        expect(toggle.props.checked).to.be.equal(false);
+        expect(toggle.props.defaultChecked).to.be.equal(false);
       });
 
       it('should be checked if all todos completed', () => {
@@ -60,7 +60,7 @@ describe('components', () => {
           completedCount: 2,
         });
         const [toggle] = output.props.children[0].props.children;
-        expect(toggle.props.checked).to.be.equal(true);
+        expect(toggle.props.defaultChecked).to.be.equal(true);
       });
 
       it('should call completeAllTodos on change', () => {
