@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        CURRENT_WORKSPACE = "${env.WORKSPACE}" 
+        CURRENT_WORKSPACE = "${env.WORKSPACE}"
     }
     stages {
         stage('prepare') {
@@ -22,8 +22,6 @@ pipeline {
                 println(new Date().getTime())
                 httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody:  """{"serviceName":"test:test.build","start":${new Date().getTime()}}""", url: "http://localhost:8022/"
                 dir('webServer') {
-                    sh "npm set registry http://localhost:4872/"
-                    sh "npm install"
                     sh "npm run build:test"
                 }
                 httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: """{"serviceName":"test:test.build","end":${new Date().getTime()}}""", url: "http://localhost:8022/"
