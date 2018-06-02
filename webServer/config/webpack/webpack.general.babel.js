@@ -41,7 +41,7 @@ export default (env, args) => {
         onBuildExit: [
             'npm run test:serviceTest >nul 2>&1',
             'npm run test:systemTest >nul 2>&1',
-            'cd.. && npm run git-commit',
+            // 'cd.. && npm run git-commit',
         ],
 	}));
 
