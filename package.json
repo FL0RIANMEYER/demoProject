@@ -16,7 +16,7 @@
         }
     },
     "scripts": {
-        "git-commit": "git add -A && git commit -am \"C\" && git push",
+        "git-commit": "git add -A && git commit -am \"C\" && git push --force",
         "build": "babel test --out-dir compiled",
         "build:devTest": "nodemon -w ./test -x \"babel test --out-dir compiled/test\"",
         "a": "echo \"Nothing done\" && exit 0",
