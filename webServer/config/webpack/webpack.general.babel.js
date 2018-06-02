@@ -9,6 +9,7 @@ import PATHS from '../path';
 
 
 export default (env, args) => {
+    if(env != 'devTest') { return; }
     const node = {
         __dirname: false,
         __filename: false,
