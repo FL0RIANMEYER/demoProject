@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRenderer } from 'react-test-renderer/shallow';
-import Footer from '../../../../app/components/Footer';
-import FilterLink from '../../../../app/container/FilterLink';
+import Footer from '../../../../app/components/footer';
+import FilterLink from '../../../../app/container/filterlink';
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../../../../app/constants/TodoFilters';
 
 import chai from 'chai';

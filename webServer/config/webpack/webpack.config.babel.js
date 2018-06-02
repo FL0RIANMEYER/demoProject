@@ -4,11 +4,10 @@ import server  from './webpack.server.babel.js';
 
 export default (env, args) => {
     const config = [
-        general(env, args),
         client( env, args),
         server( env, args),
+        general(env, args),
     ];
 
     return config.filter(c => !!c);
 };
- 

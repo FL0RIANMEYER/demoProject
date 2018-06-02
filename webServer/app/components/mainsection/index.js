@@ -18,7 +18,7 @@ const MainSection = ({ todosCount, completedCount, actions }) =>
           <input
             className={styles.toggleAll}
             type="checkbox"
-            checked={completedCount === todosCount}
+            defaultChecked={completedCount === todosCount}
           />
           <label onClick={() => actions.completeAllTodos(completedCount !== todosCount)}/>
         </span>
@@ -32,7 +32,7 @@ const MainSection = ({ todosCount, completedCount, actions }) =>
           onClearCompleted={actions.clearCompleted}
         />
       }
-    </section>
+  </section>
   );
 
 MainSection.propTypes = {

@@ -7,20 +7,20 @@ export const addTodo = text => ({
     },
     ajax: true,
     path: 'todo',
-    method: 'POST',
+    method: 'post',
 });
 export const deleteTodo = id => ({
     type: types.DELETE_TODO,
     ajax: true,
     id,
     path: 'todo/' + id,
-    method: 'DELETE',
+    method: 'delete',
 });
 export const getTodos = () => ({
     type: types.GET_TODOS,
     ajax: true,
     path: 'todo',
-    method: 'GET',
+    method: 'get',
 });
 export const editTodo = (id, text) => ({
     type: types.EDIT_TODO,
@@ -30,7 +30,7 @@ export const editTodo = (id, text) => ({
     id,
     ajax: true,
     path: 'todo/' + id,
-    method: 'PATCH',
+    method: 'patch',
 });
 export const completeTodo = (id, completed) => ({
     type: types.COMPLETE_TODO,
@@ -40,7 +40,7 @@ export const completeTodo = (id, completed) => ({
     id,
     ajax: true,
     path: 'todo/' + id,
-    method: 'PATCH',
+    method: 'patch',
 });
 export const completeAllTodos = (completed) => ({
     type: types.COMPLETE_ALL_TODOS,
@@ -49,14 +49,14 @@ export const completeAllTodos = (completed) => ({
     },
     ajax: true,
     path: 'todo/all',
-    method: 'PATCH',
+    method: 'patch',
 });
 export const clearCompleted = () => ({
     type: types.CLEAR_COMPLETED,
     completed: true,
     ajax: true,
     path: 'todo/all',
-    method: 'DELETE',
+    method: 'delete',
 });
 
 export const setVisibilityFilter = filter => ({ type: types.SET_VISIBILITY_FILTER, filter});

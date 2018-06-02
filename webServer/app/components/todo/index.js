@@ -4,7 +4,6 @@ import TodoItem from './TodoItem';
 
 import styles from './index.css';
 
-
 const TodoList = ({ filteredTodos, actions }) => (
   <ul className={styles.todoList}>
     {filteredTodos.map(todo =>
@@ -12,7 +11,7 @@ const TodoList = ({ filteredTodos, actions }) => (
     )}
   </ul>
 );
-
+console.log('a');
 TodoList.propTypes = {
   filteredTodos: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,

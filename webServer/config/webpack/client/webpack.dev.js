@@ -7,7 +7,7 @@ import PATHS from '../../path';
 
 const extractCSS = new ExtractTextPlugin('[name].styles.css');
 
-export default {
+export default (env, args) => ({
     context: PATHS.root,
     entry: {
         client: ['babel-polyfill', PATHS.client],
@@ -17,7 +17,7 @@ export default {
     target: 'web',
     cache: true,
     output: {
-        path: path.join(PATHS.compiled, 'dev'),
+        path: path.join(PATHS.compiled, `${env}/public`),
         filename: '[name].js',
     },
     module: {
@@ -126,4 +126,4 @@ export default {
         new webpack.NamedModulesPlugin(),
         extractCSS,
     ],
-};
+});

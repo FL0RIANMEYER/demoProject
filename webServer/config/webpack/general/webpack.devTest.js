@@ -1,7 +1,11 @@
 import path          from 'path';
 import EmitAllPlugin from 'webpack-emit-all-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 import PATHS from '../../path';
+
+
+const extractCSS = new ExtractTextPlugin('[name].styles.css');
 
 
 export default {
@@ -34,51 +38,60 @@ export default {
             },
             {
                 test: /\.(scss)$/,
-                use: [{
-                        loader: 'css-loader',
-                        options: {
-                            alias: {
-                                '../img': '../../app/images',
+                use: ['css-hot-loader'].concat(extractCSS.extract({
+                    fallback: 'style-loader',
+                    use: [{
+                            loader: 'css-loader',
+                            options: {
+                                alias: {
+                                    '../img': '../../app/images',
+                                },
+                                localIdentName: '[local]',
+                                sourceMap: true,
+                                importLoaders: 1,
+                                modules: true,
+                                camelCase: 'dashes',
                             },
-                            localIdentName: '[name]__[local]___[hash:base64:5]',
-                            sourceMap: true,
-                            importLoaders: 1,
-                            modules: true,
-                            camelCase: 'dashes',
                         },
-                    },
-                    {
-                        loader: 'sass-loader',
-                    },
-                ],
+                        {
+                            loader: 'sass-loader',
+                        },
+                    ],
+                })),
             },
             {
                 test: /\.css$/,
                 exclude: [/bower_components/, /node_modules/],
-                use: [{
-                    loader: 'css-loader',
-                    options: {
-                        sourceMap: true,
-                        importLoaders: 1,
-                        modules: true,
-                        camelCase: true,
-                        localIdentName: '[name]_[local]_[hash:base64:5]',
-                    },
-                }],
+                use: ['css-hot-loader'].concat(extractCSS.extract({
+                    fallback: 'style-loader',
+                    use: [{
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                            importLoaders: 1,
+                            modules: true,
+                            camelCase: true,
+                            localIdentName: '[local]',
+                        },
+                    }],
+                })),
             },
             {
                 test: /\.css$/,
                 include: [/bower_components/, /node_modules/],
-                use: [{
-                    loader: 'css-loader',
-                    options: {
-                        sourceMap: true,
-                        importLoaders: 1,
-                        modules: true,
-                        camelCase: true,
-                        localIdentName: '[name]_[local]_[hash:base64:5]',
-                    },
-                }],
+                use: extractCSS.extract({
+                  fallback: 'style-loader',
+                  use: [{
+                      loader: 'css-loader',
+                      options: {
+                          sourceMap: true,
+                          importLoaders: 1,
+                          modules: true,
+                          camelCase: true,
+                          localIdentName: '[local]',
+                      },
+                  }],
+                }),
             },
             {
                 test: /\.(png|jpg|jpeg|gif|ico)$/,
@@ -99,6 +112,7 @@ export default {
         ],
     },
     plugins: [
+        extractCSS,
         new EmitAllPlugin({
             ignorePattern: /node_modules/,
         }),
