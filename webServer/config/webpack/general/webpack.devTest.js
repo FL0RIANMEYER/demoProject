@@ -114,6 +114,7 @@ export default {
     plugins: [
         extractCSS,
         new EmitAllPlugin({
+            ignoreExternals: true,
             ignorePattern: /node_modules/,
         }),
     ],
