@@ -34,7 +34,7 @@ pipeline {
                 println(new Date().getTime())
                 httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody:  """{"serviceName":"test:test.serviceTest","start":${new Date().getTime()}}""", url: "http://localhost:8022/"
                 dir('webServer') {
-                    sh "npm run test:test"
+                    sh "npm run test:test:service"
                 }
                 httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: """{"serviceName":"test:test.serviceTest","end":${new Date().getTime()}}""", url: "http://localhost:8022/"
                 println(new Date().getTime())
