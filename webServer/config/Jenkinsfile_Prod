@@ -4,23 +4,23 @@ pipeline {
         stage('prepare') {
             steps {
                 println(new Date().getTime())
-                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody:  """{"serviceName":"test:prod.prepare","start":${new Date().getTime()}}""", url: "http://localhost:8022/"
+                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody:  """{"stageName":"prod.prepare","start":${new Date().getTime()}}""", url: "http://localhost:8022/"
                 dir('webServer') {
                     sh "npm set registry http://localhost:4872/"
                     sh "npm install"
                 }
-                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: """{"serviceName":"test:prod.prepare","end":${new Date().getTime()}}""", url: "http://localhost:8022/"
+                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: """{"stageName":"prod.prepare","end":${new Date().getTime()}}""", url: "http://localhost:8022/"
                 println(new Date().getTime())
             }
         }
         stage('build') {
             steps {
                 println(new Date().getTime())
-                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody:  """{"serviceName":"test:prod.build","start":${new Date().getTime()}}""", url: "http://localhost:8022/"
+                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody:  """{"stageName":"prod.build","start":${new Date().getTime()}}""", url: "http://localhost:8022/"
                 dir('webServer') {
                     sh "npm run build:prod"
                 }
-                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: """{"serviceName":"test:prod.build","end":${new Date().getTime()}}""", url: "http://localhost:8022/"
+                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: """{"stageName":"prod.build","end":${new Date().getTime()}}""", url: "http://localhost:8022/"
                 println(new Date().getTime())
             }
         }
