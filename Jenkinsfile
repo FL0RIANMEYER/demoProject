@@ -37,7 +37,6 @@ pipeline {
         }
         stage('Teardown') {
             steps {
-                
             //     ws("${JENKINS_HOME}/workspace/Database") {
             //         dir('webServer') {
             //             sh "npm run stop:test"
