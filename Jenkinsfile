@@ -35,7 +35,7 @@ pipeline {
                 sh 'npm run test:test:system'
             }
         }
-        stage('Teardown12') {
+        // stage('Teardown12') {
             // steps {
             //     ws("${JENKINS_HOME}/workspace/Database") {
             //         dir('webServer') {
@@ -53,6 +53,6 @@ pipeline {
             //         }
             //     }
             // }
-        }
+        // }
     }
 }
