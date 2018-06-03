@@ -7,6 +7,7 @@ pipeline {
                 sh 'npm install'
                 sh 'npm run build'
             }
+        }
         stage('Setup') {
             steps {
                 sh 'npm install'
@@ -35,23 +36,23 @@ pipeline {
             }
         }
         stage('Teardown') {
-            steps {
-                // ws("${JENKINS_HOME}/workspace/Database") {
-                //     dir('webServer') {
-                //         sh "npm run stop:test"
-                //     }
-                // }
-                // ws("${JENKINS_HOME}/workspace/DbAdapter") {
-                //     dir('webServer') {
-                //         sh "npm run stop:test"
-                //     }
-                // }
-                // ws("${JENKINS_HOME}/workspace/WebServer") {
-                //     dir('webServer') {
-                //         sh "npm run stop:test"
-                //     }
-                // }
-            }
+            // steps {
+            //     ws("${JENKINS_HOME}/workspace/Database") {
+            //         dir('webServer') {
+            //             sh "npm run stop:test"
+            //         }
+            //     }
+            //     ws("${JENKINS_HOME}/workspace/DbAdapter") {
+            //         dir('webServer') {
+            //             sh "npm run stop:test"
+            //         }
+            //     }
+            //     ws("${JENKINS_HOME}/workspace/WebServer") {
+            //         dir('webServer') {
+            //             sh "npm run stop:test"
+            //         }
+            //     }
+            // }
         }
     }
 }
