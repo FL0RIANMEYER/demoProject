@@ -38,7 +38,7 @@ export default (env, args) => {
         stageName: `${env}.build.general`,
     }));
 
-    if(env == devTest) {
+    if(env == 'devTest') {
         config.plugins.push(new WebpackShellPlugin({
             safe: true,
             onBuildExit: [
