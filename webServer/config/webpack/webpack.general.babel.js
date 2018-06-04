@@ -9,13 +9,15 @@ import PATHS from '../path';
 
 
 export default (env, args) => {
-    if(env != 'devTest') { return; }
     const node = {
         __dirname: false,
         __filename: false,
     };
 
-    const config = devTest;
+    const configs = { devTest: devTest(env, args), test: devTest(env, args) };
+    const config = configs[env];
+
+    if(!config) { return; }
 
     config.node    = node;
     config.plugins = config.plugins || [];

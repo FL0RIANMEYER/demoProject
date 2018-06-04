@@ -8,7 +8,7 @@ import PATHS from '../../path';
 const extractCSS = new ExtractTextPlugin('[name].styles.css');
 
 
-export default {
+export default (env, args) => ({
     context: PATHS.root,
     entry: {
         client: [PATHS.client],
@@ -20,7 +20,7 @@ export default {
     target: 'node',
     cache: true,
     output: {
-        path: path.join(PATHS.compiled, 'devTest'),
+        path: path.join(PATHS.compiled, `${env}`),
         filename: '[name].js',
     },
     module: {
@@ -118,4 +118,4 @@ export default {
             ignorePattern: /node_modules/,
         }),
     ],
-};
+});
