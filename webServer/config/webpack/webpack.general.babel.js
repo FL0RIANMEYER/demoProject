@@ -39,8 +39,8 @@ export default (env, args) => {
     config.plugins.push(new WebpackShellPlugin({
         safe: true,
         onBuildExit: [
-            'npm run test:serviceTest >nul 2>&1',
-            'npm run test:systemTest >nul 2>&1',
+            'npm run test:devTest:service >nul 2>&1',
+            'npm run test:devTest:system >nul 2>&1',
             // 'cd.. && npm run git-commit',
         ],
 	}));

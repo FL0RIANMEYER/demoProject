@@ -14,10 +14,6 @@
         }
     },
     "scripts": {
-        "config:win:dev": "setx NODE_ENV development",
-        "config:win:devTest": "setx NODE_ENV devTest",
-        "config:win:test": "setx NODE_ENV test",
-        "config:win:prod": "setx NODE_ENV production",
         "start:dev": "nodemon --delay 2.5 -w ./compiled/dev     ./compiled/dev/server.js",
         "start:devTest": "nodemon --delay 1.5 -w ./compiled/devTest ./compiled/devTest/server.js",
         "start:test": "pm2 start ./compiled/test/server.js",
@@ -30,26 +26,9 @@
         "test:devTest": "mocha -w ../compiled/test/e2e/**/*.js compiled/devTest/test/unit/**/*.js -r mock-css-modules -R mocha-rtp-reporter/devTestServiceE",
         "test:devTest:service": "mocha -w compiled/devTest/test/unit/**/*.js -r mock-css-modules -R mocha-rtp-reporter/devTestServiceE",
         "test:devTest:system": "mocha -w ../compiled/test/e2e/**/*.js -R mocha-rtp-reporter/devTestSystemE",
-        "test:test": "npm run test:unit",
-        "test:test:service": "mocha compiled/devTest/test/unit/**/*.js -r mock-css-modules -R mocha-rtp-reporter/testServiceE",
-        "test:unit": "mocha compiled/devTest/test/unit/**/*.js -r mock-css-modules -R mocha-rtp-reporter",
-        "test:serviceTest": "mocha compiled/devTest/test/unit/**/*.js -r mock-css-modules -R mocha-rtp-reporter/devTestServiceE",
-        "test:systemTest": "mocha ../test/e2e/test.js -r babel-polyfill -r babel-core/register -R mocha-rtp-reporter/devTestSystemE",
-        "watch": "run-p --continue-on-error watch:files watch:config",
-        "watch:files": "nodemon -w ./app -w ./server -w./test -x \"npm run sync:files\"",
-        "watch:config": "nodemon -w ./config -x \"npm run sync:config\"",
-        "sync:files": "echo \"asd\"",
-        "sync:config": "oc process -f ./config/kubernetes/resource/template.yml -p NAMESPACE=test-project -p NAME=webserver -p PROBE=/healthz -p SERVER_PORT=8080 -p LOG_LEVEL=debug -p APP_VOLUME=. | oc apply -f - && npm run sync:config:build",
-        "sync:config:build": "oc start-build webserver -n test-project --from-dir . && npm run sync:config:deploy",
-        "sync:config:deploy": "oc rollout latest dc/webserver && oc rollout status dc/webserver",
-        "test": "npm run unit-test && npm run integration-test && npm run acceptance-test",
-        "unit-test": "mocha -w compiled/out/test/unit/**/*.js        -r babel-polyfill -r babel-core/register -r mock-css-modules --reporter mocha-rtp-reporter",
-        "integration-test": "mocha -w compiled/out/test/integration/**/*.js -r babel-polyfill -r babel-core/register                     --reporter mocha-rtp-reporter",
-        "acceptance-test": "mocha -w compiled/out/test/acceptance/**/*.js  -r babel-polyfill -r babel-core/register                     --reporter mocha-rtp-reporter"
+        "test:test:service": "mocha compiled/test/test/unit/**/*.js -r mock-css-modules -R mocha-rtp-reporter/testServiceE",
+        "test:test:system": "mocha ../test/e2e/test.js -r babel-polyfill -r babel-core/register -R mocha-rtp-reporter/testSystemE"
     },
-    "pre-commit": [
-        "a"
-    ],
     "devDependencies": {
         "babel": "^6.23.0",
         "babel-core": "^6.26.3",

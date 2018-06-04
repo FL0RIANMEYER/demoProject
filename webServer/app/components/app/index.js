@@ -9,7 +9,7 @@ const Header = headerContainer(headerComponent);
 const MainSection = mainSectionContainer(mainSectionComponent);
 
 import styles from './index.css';
-console.log('as');
+console.log('asssasds');
 const App = () => (
     <section className={styles.todoapp}>
         <Header />
