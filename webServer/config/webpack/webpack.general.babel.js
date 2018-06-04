@@ -38,14 +38,16 @@ export default (env, args) => {
         stageName: `${env}.build.general`,
     }));
 
-    config.plugins.push(new WebpackShellPlugin({
-        safe: true,
-        onBuildExit: [
-            'npm run test:devTest:service >nul 2>&1',
-            'npm run test:devTest:system >nul 2>&1',
-            // 'cd.. && npm run git-commit',
-        ],
-	}));
+    if(env == devTest) {
+        config.plugins.push(new WebpackShellPlugin({
+            safe: true,
+            onBuildExit: [
+                'npm run test:devTest:service >nul 2>&1',
+                'npm run test:devTest:system >nul 2>&1',
+                // 'cd.. && npm run git-commit',
+            ],
+        }));
+    }
 
 
     return config;
