@@ -15,7 +15,7 @@ export default {
     target: 'node',
     mode: 'development',
     devtool: 'source-map',
-    output: {
+    output: { 
         path: path.join(PATHS.compiled, 'dev'),
         filename: '[name].js',
         libraryTarget: 'commonjs2',
@@ -87,7 +87,7 @@ export default {
                   }],
                 }),
             },
-        ], 
+        ],
     },
     plugins: [
         extractCSS,
