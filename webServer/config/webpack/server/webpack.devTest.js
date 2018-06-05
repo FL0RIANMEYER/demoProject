@@ -14,7 +14,7 @@ export default {
     },
     target: 'node',
     mode: 'development',
-    devtool: 'source-map',
+    devtool: 'source-map', 
     output: {
         path: path.join(PATHS.compiled, 'test'),
         filename: '[name].js',
