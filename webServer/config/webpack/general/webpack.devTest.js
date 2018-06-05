@@ -10,7 +10,7 @@ const extractCSS = new ExtractTextPlugin('[name].styles.css');
 
 export default (env, args) => ({
     context: PATHS.root,
-    entry: {
+    entry: { 
         client: [PATHS.client],
         server: [PATHS.server],
         test:   [PATHS.test],
