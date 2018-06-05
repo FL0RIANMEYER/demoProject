@@ -14,7 +14,7 @@ export default (env, args) => ({
     },
     mode: 'development',
     devtool: 'source-map',
-    target: 'web',
+    target: 'web', 
     cache: true,
     output: {
         path: path.join(PATHS.compiled, `${env}/public`),
