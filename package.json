@@ -67,7 +67,7 @@
         "webpack": "^3.10.0",
         "webpack-node-externals": "^1.6.0",
         "webpack-source-map-support": "^2.0.1"
-    },
+    }, 
     "dependencies": {
         "babel-preset-es2017": "^6.24.1",
         "body-parser": "^1.18.2",
