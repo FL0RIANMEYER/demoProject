@@ -10,4 +10,4 @@ export default (env, args) => {
     ];
 
     return config.filter(c => !!c);
-}; 
+};  
