@@ -15,14 +15,14 @@ export default {
     target: 'node',
     mode: 'development',
     devtool: 'source-map',
-    output: { 
+    output: {
         path: path.join(PATHS.compiled, 'dev'),
         filename: '[name].js',
         libraryTarget: 'commonjs2',
     },
     module: {
         rules: [{
-                test: /\.js$/,
+                test: /\.jsx$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
 
