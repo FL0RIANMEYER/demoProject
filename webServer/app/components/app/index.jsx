@@ -5,11 +5,11 @@ import headerComponent from '../../components/header';
 
 const Header = headerContainer(headerComponent);
 
-import styles from './index.css';
+import styles from './index.css'; 
 
 const App = () => (
     <section className={styles.todoapp}>
-        <Header /> 
+        <Header />
     </section>
 );
 
