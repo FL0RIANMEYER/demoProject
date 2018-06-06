@@ -4,7 +4,7 @@ import TodoTextInput from '../../components/todo/TodoTextInput';
 
 import styles from './index.css';
 
-console.log('ac');
+console.log('acs');
 export const Header = ({ addTodo }) => (
   <header className={styles.header}>
     <h1>todos</h1>
