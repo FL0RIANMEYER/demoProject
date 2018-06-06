@@ -9,8 +9,8 @@ const Server = function(port) {
     app.use(bodyParser.json());
     app.use(express.static(__dirname + '/public', {
         index: false,
-    }));
-    app.use(routes); 
+    })); 
+    app.use(routes);
 
     app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 };
