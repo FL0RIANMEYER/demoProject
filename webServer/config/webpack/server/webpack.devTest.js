@@ -14,7 +14,7 @@ export default {
     },
     target: 'node',
     mode: 'development',
-    devtool: 'source-map', 
+    devtool: 'source-map',
     output: {
         path: path.join(PATHS.compiled, 'test'),
         filename: '[name].js',
@@ -22,7 +22,7 @@ export default {
     },
     module: {
         rules: [{
-                test: /\.js$/,
+                test: /\.jsx$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
 
