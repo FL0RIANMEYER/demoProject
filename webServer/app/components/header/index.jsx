@@ -12,6 +12,6 @@ export const Header = ({ addTodo }) => (
 
 Header.propTypes = {
   addTodo: PropTypes.func.isRequired,
-};
+}; 
 
 export default Header;
