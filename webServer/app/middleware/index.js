@@ -1,3 +1,4 @@
+import ajax        from './ajax';
 
-export         {};
-export default [];
+export         { ajax };
+export default [ajax];
