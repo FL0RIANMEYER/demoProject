@@ -6,7 +6,7 @@ import headerComponent from '../../components/header';
 const Header = headerContainer(headerComponent);
 
 import styles from './index.css';
-console.log('a');
+
 const App = () => (
     <section className={styles.todoapp}>
         <Header />
