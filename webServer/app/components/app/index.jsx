@@ -9,7 +9,7 @@ import styles from './index.css';
 
 const App = () => (
     <section className={styles.todoapp}>
-        <Header />
+        <Header /> 
     </section>
 );
 
